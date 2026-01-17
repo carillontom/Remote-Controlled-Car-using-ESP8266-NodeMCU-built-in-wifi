@@ -9,11 +9,11 @@
 #include <WiFiClient.h> 
 #include <ESP8266WebServer.h>
 
-String command;             //String to store app command state.
+String command;             
 int speedCar = 800;         // 400 - 1023.
 int speed_Coeff = 3;
 unsigned long lastCommandTime = 0;
-unsigned long commandTimeout = 500;  // Time in milliseconds to wait before stopping (e.g., 500ms)
+unsigned long commandTimeout = 500;  //Time in milliseconds to wait before stopping 
 
 
 const char* ssid = "Niggaseeker123";
@@ -30,7 +30,7 @@ void setup() {
   
   Serial.begin(115200);
   
-// Connecting WiFi
+// Connecting to WiFi
 
   WiFi.mode(WIFI_AP);
   WiFi.softAP(ssid);
@@ -39,7 +39,7 @@ void setup() {
   Serial.print("AP IP address: ");
   Serial.println(myIP);
  
- // Starting WEB-server 
+ //starting WEB-server 
      server.on ( "/", HTTP_handleRoot );
      server.onNotFound ( HTTP_handleRoot );
      server.begin();    
@@ -149,9 +149,9 @@ void loop() {
 
   if (server.hasArg("State")) {
     command = server.arg("State");
-    lastCommandTime = millis();  // Update time of last command received
+    lastCommandTime = millis();  //Update time of last command received
 
-    char cmd = command.charAt(0);  // Get the first character
+    char cmd = command.charAt(0);  // get the first character
     switch (cmd) {
       case 'F': goAhead(); break;
       case 'B': goBack(); break;
@@ -174,7 +174,7 @@ void loop() {
       case '8': speedCar = 960; break;
       case '9': speedCar = 1023; break;
 
-      default: break; // Unknown command, do nothing
+      default: break; // Unknown command= do nothing
     }
   }
 
